@@ -1,0 +1,23 @@
+name: Keep Render Awake
+
+on:
+  schedule:
+    # Every 20 minutes
+    - cron: "*/20 * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Random Delay
+        run: |
+          DELAY=$((RANDOM % 600))
+          echo "Waiting $DELAY seconds..."
+          sleep $DELAY
+
+      - name: Ping Server
+        run: |
+          curl -L https://safetify-ml.onrender.com/health
