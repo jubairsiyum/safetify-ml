@@ -20,4 +20,6 @@ jobs:
 
       - name: Ping Server
         run: |
-          curl -L https://safetify-ml.onrender.com/health
+          curl -s -o /dev/null \
+          -w "HTTP Status: %{http_code}\nTotal Time: %{time_total}s\n" \
+          https://safetify-ml.onrender.com/health
